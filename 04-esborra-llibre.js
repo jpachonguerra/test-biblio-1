@@ -25,10 +25,19 @@ class MyTest extends BaseTest
         // 3 boto send .click()
         await this.driver.findElement(By.xpath("//input[@type='submit']")).click();
 
-        // 4 crear llibre
-        await this.driver.findElement(By.xpath("//a[@href='/admin/biblio/llibre/add/']")).click();
-        await this.driver.findElement(By.name("titol")).sendKeys(process.env.nom);
-        await this.driver.findElement(By.xpath("//input[@type='submit'][@name='_save']")).click();
+        // 4 anar a la llista de llibres
+        await this.driver.findElement(By.xpath("//a[@href='/admin/biblio/llibre/']")).click();
+
+        //  5 cercar llibre
+        await this.driver.findElement(By.xpath("//a[text()='"+process.env.nom+"']")).click();
+
+        // 6 esborrar llibre
+
+        await this.driver.findElement(By.xpath("//a[@class='deletelink']")).click();
+
+        // 7 confirmar esborrar llibre
+
+        await this.driver.findElement(By.xpath("//input[@type='submit']")).click();
 
         // final tancar sessio
         await this.driver.findElement(By.xpath("//button[text()='Finalitzar sessió']")).click();
